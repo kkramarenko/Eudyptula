@@ -1,8 +1,8 @@
 /*
-* This Linux kernel module of usb keyboard, which loads
-* automaticaly when keyboard plugged and removes when
-* keyboard unplugged.
-*/
+ *This Linux kernel module of usb keyboard, which loads
+ *automaticaly when keyboard plugged and removes when
+ *keyboard unplugged.
+ */
 
 #include <linux/init.h>
 #include <linux/module.h>
