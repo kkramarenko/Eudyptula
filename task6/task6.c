@@ -12,7 +12,7 @@ static char *task6_string = "0a0d07c2a690\0";
 static ssize_t misc_read(struct file *fp, char __user *buff, size_t size,
 			loff_t *offset)
 {
-	return simple_read_from_buffer(buff, size, 0, task6_string, 
+	return simple_read_from_buffer(buff, size, offset, task6_string, 
 					BUF_MAX);
 }
 
@@ -22,7 +22,7 @@ static int misc_write(struct file *fp, const char __user *buff, size_t size,
 	char written_string[BUF_MAX];
 	size_t rc = 0;
 
-	rc = simple_write_to_buffer(written_string, BUF_MAX, 0, buff, size);
+	rc = simple_write_to_buffer(written_string, BUF_MAX, offset, buff, size);
 	if (rc < 0)
 		return rc;
 
