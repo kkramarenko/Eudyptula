@@ -1,0 +1,29 @@
+diff --git a/task8/task8.c b/task8/task8.c
+index 92e567a..5284ca6 100644
+--- a/task8/task8.c
++++ b/task8/task8.c
+@@ -6,8 +6,10 @@
+ #define BUF_MAX 13
+ 
+ static char *task8_string = "0a0d07c2a690\0";
++static unsigned long long int *task8_jiffies =
++				(unsigned long long int *) &jiffies;
+ 
+-static struct dentry *dent, *fent;
++static struct dentry *dent, *fent, *u64ent;
+ 
+ static ssize_t dfs_read_id(struct file *fp, char __user *buff, size_t size,
+ 		loff_t *offset)
+@@ -51,6 +53,12 @@ static int __init task8_init(void)
+ 		return -1;
+ 	}
+ 
++	u64ent = debugfs_create_u64("jiffies", 0444, dent, task8_jiffies);
++	if (!u64ent) {
++		pr_info("TASK8 Creating jiffies file ends with error!\n");
++		return -1;
++	}
++
+ 	return 0;
+ }
+ 
